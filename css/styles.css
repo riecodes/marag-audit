@@ -6,6 +6,9 @@
     --teal-blue: #488a90;
     --slate-blue: #2c4759;
     --main-font: 'League Spartan', 'Montserrat', 'Poppins', Arial, sans-serif;
+    --heading-font: 'Montserrat', 'League Spartan', Arial, sans-serif;
+    --accent-font: 'Poppins', Arial, sans-serif;
+    --mono-font: 'Fira Mono', 'Consolas', 'Courier New', monospace;
 }
 
 body {

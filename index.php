@@ -8,25 +8,29 @@ $section = $_GET['section'] ?? 'home';
 </head>
 
 <body>
-<?php include 'include/nav.php'; ?>
+<nav class="navbar">
+    <?php include 'include/nav.php'; ?>
+</nav>
 
-<div class="container-fluid p-0 main-content">
-<?php
-if ($section === 'home') {
-    include 'content/home.php';
-} elseif ($section === 'about') {
-    include 'content/about.php';
-} elseif ($section === 'barangay') {
-    include 'content/barangay.php';
-} elseif ($section === 'building') {
-    include 'content/building.php';
-} elseif ($section === 'explore') {
-    include 'content/explore.php';
-}
-?>
+<div class="main-content flex-item">
+    <?php
+    if ($section === 'home') {
+        include 'content/home.php';
+    } elseif ($section === 'about') {
+        include 'content/about.php';
+    } elseif ($section === 'contact') {
+        include 'content/contact.php';
+    } elseif ($section === 'barangay') {
+        include 'content/barangay.php';
+    } elseif ($section === 'building') {
+        include 'content/building.php';
+    } elseif ($section === 'explore') {
+        include 'content/explore.php';
+    }
+    ?>
 </div>
 
-<footer class="footer-custom bg-dark text-light py-3 mt-auto">
+<footer class="footer bg-dark text-light py-3 mt-auto">
     <div class="container text-center">
         <p class="mb-0">&copy; <?php echo date('Y'); ?> Maragondon Building Audit. All rights reserved.</p>
     </div>
