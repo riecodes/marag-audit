@@ -11,3 +11,4 @@
 <link rel="stylesheet" href="../css/styles.css">
 <link rel="stylesheet" href="../css/home.css">
 <link rel="stylesheet" href="../include/css/nav.css">
+<link rel="stylesheet" href="../css/index.css">

@@ -4,14 +4,13 @@ $section = $_GET['section'] ?? 'home';
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
-    <?php include 'include/link.php'; ?>
-
+    <?php include 'include/link.php'; ?>    
 </head>
 
 <body>
 <?php include 'include/nav.php'; ?>
 
-<div class="container-fluid p-0">
+<div class="container-fluid p-0 main-content">
 <?php
 if ($section === 'home') {
     include 'content/home.php';
@@ -27,9 +26,9 @@ if ($section === 'home') {
 ?>
 </div>
 
-<footer class="bg-dark text-light py-4">
+<footer class="footer-custom bg-dark text-light py-3 mt-auto">
     <div class="container text-center">
-        <p>&copy; <?php echo date('Y'); ?> Maragondon Building Audit. All rights reserved.</p>
+        <p class="mb-0">&copy; <?php echo date('Y'); ?> Maragondon Building Audit. All rights reserved.</p>
     </div>
 </footer>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>

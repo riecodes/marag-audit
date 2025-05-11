@@ -1,7 +1,7 @@
 /* Home Section Custom Styles */
 .hero-section {
+    min-height: 90vh;
     background: url('../gdrive/photo-docs/bg/home-bg.png') center/cover no-repeat;
-    min-height: 60vh;
     position: relative;
     display: flex;
     align-items: center;
@@ -18,7 +18,7 @@
 }
 
 .hero-content {
-    position: relative;
+    
     z-index: 2;
     max-width: 650px;
     margin-left: 2.5rem;
