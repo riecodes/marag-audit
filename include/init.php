@@ -54,9 +54,9 @@ try {
         mkdir(UPLOAD_PATH, 0777, true);
     }
     
-    echo "Database and tables created successfully!";
+    
     
 } catch(PDOException $e) {
-    die("Error: " . $e->getMessage());
+    die("Error: " . $e->getMessage());    
 }
 ?> 

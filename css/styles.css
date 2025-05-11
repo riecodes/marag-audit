@@ -1,0 +1,82 @@
+:root {
+    --dark-gray: #3b3137;
+    --beige: #e0d8c1;
+    --dusty-rose: #7e5c65;
+    --teal-blue: #488a90;
+    --slate-blue: #2c4759;
+    --main-font: 'League Spartan', 'Montserrat', 'Poppins', Arial, sans-serif;
+}
+
+body {
+    background: var(--beige);
+    color: var(--dark-gray);
+    font-family: var(--main-font);
+}
+
+.navbar-main {
+    background: var(--dark-gray);
+}
+
+.navbar-main .nav-link,
+.navbar-main .navbar-brand {
+    color: var(--beige) !important;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 1px;
+}
+
+.navbar-main .nav-link.active,
+.navbar-main .nav-link:hover {
+    color: var(--dusty-rose) !important;
+}
+
+.btn-main {
+    background: var(--teal-blue);
+    color: #fff;
+    border-radius: 4px;
+    font-weight: 700;
+    transition: background 0.3s;
+    border: none;
+}
+
+.btn-main:hover {
+    background: var(--dusty-rose);
+}
+
+.card-hover {
+    transition: transform 0.2s;
+}
+
+.card-hover:hover {
+    transform: translateY(-5px);
+}
+
+.photo-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 1rem;
+}
+
+.text-slate {
+    color: var(--slate-blue) !important;
+}
+
+.text-accent {
+    color: var(--dusty-rose) !important;
+}
+
+.bg-slate {
+    background: var(--slate-blue) !important;
+}
+
+.bg-beige {
+    background: var(--beige) !important;
+}
+
+.bg-dark-gray {
+    background: var(--dark-gray) !important;
+}
+
+.bg-accent {
+    background: var(--dusty-rose) !important;
+}

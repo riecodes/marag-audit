@@ -1,31 +1,19 @@
 <?php
-require_once 'config.php';
 
-$query = $_GET['q'] ?? '';
-$results = [];
-
-if (!empty($query)) {
-    try {
-        $pdo = new PDO(
-            "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME,
-            DB_USER,
-            DB_PASS
-        );
-        $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        
-        // Search in buildings table
-        $stmt = $pdo->prepare("
-            SELECT * FROM buildings 
-            WHERE name LIKE ? OR barangay LIKE ?
-            ORDER BY barangay, name
-        ");
-        $search_term = "%{$query}%";
-        $stmt->execute([$search_term, $search_term]);
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        
-    } catch(PDOException $e) {
-        $error = "Error: " . $e->getMessage();
-    }
+try {
+    $pdo = new PDO(
+        "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME,
+        DB_USER,
+        DB_PASS
+    );
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    
+    // Get unique barangays
+    $stmt = $pdo->query("SELECT DISTINCT barangay FROM buildings ORDER BY barangay");
+    $barangays = $stmt->fetchAll(PDO::FETCH_COLUMN);
+    
+} catch(PDOException $e) {
+    $error = "Error: " . $e->getMessage();
 }
 ?>
 <!DOCTYPE html>
@@ -33,9 +21,10 @@ if (!empty($query)) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results - Maragondon Audit</title>
+    <title>Explore Buildings - Maragondon Audit</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.7.1/dist/leaflet.css" />
     <style>
         :root {
             --dark-gray: #3b3137;
@@ -58,10 +47,15 @@ if (!empty($query)) {
             background-color: var(--dusty-rose);
             border-color: var(--dusty-rose);
         }
-        .building-card {
+        #map {
+            height: 500px;
+            width: 100%;
+            border-radius: 8px;
+        }
+        .barangay-card {
             transition: transform 0.2s;
         }
-        .building-card:hover {
+        .barangay-card:hover {
             transform: translateY(-5px);
         }
     </style>
@@ -90,7 +84,7 @@ if (!empty($query)) {
                     </li>
                 </ul>
                 <form class="d-flex" action="search.php" method="GET">
-                    <input class="form-control me-2" type="search" name="q" placeholder="Search buildings..." value="<?php echo htmlspecialchars($query); ?>">
+                    <input class="form-control me-2" type="search" name="q" placeholder="Search buildings...">
                     <button class="btn btn-outline-light" type="submit">Search</button>
                 </form>
             </div>
@@ -98,34 +92,38 @@ if (!empty($query)) {
     </nav>
 
     <div class="container">
-        <h1 class="text-center mb-4">Search Results</h1>
-        
-        <?php if (isset($error)): ?>
-            <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
-        <?php endif; ?>
-
-        <?php if (empty($query)): ?>
-            <div class="alert alert-info">Please enter a search term.</div>
-        <?php elseif (empty($results)): ?>
-            <div class="alert alert-info">No buildings found matching your search.</div>
-        <?php else: ?>
-            <div class="row row-cols-1 row-cols-md-3 g-4">
-                <?php foreach ($results as $building): ?>
-                <div class="col">
-                    <div class="card h-100 building-card">
-                        <div class="card-body">
-                            <h5 class="card-title"><?php echo htmlspecialchars($building['name']); ?></h5>
-                            <p class="card-text text-muted"><?php echo htmlspecialchars($building['barangay']); ?></p>
-                            <p class="card-text"><?php echo htmlspecialchars($building['description'] ?? ''); ?></p>
-                            <a href="building.php?id=<?php echo $building['id']; ?>" class="btn btn-primary">View Details</a>
-                        </div>
+        <h1 class="text-center mb-4">Explore Government Buildings</h1>
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <?php foreach ($buildings as $building): ?>
+            <div class="col">
+                <div class="card h-100 card-hover">
+                    <div class="card-body">
+                        <h5 class="card-title"><?php echo htmlspecialchars($building['name']); ?></h5>
+                        <p class="card-text"><?php echo htmlspecialchars($building['description'] ?? ''); ?></p>
+                        <a href="index.php?section=building&id=<?php echo $building['id']; ?>" class="btn btn-main">View Details</a>
                     </div>
                 </div>
-                <?php endforeach; ?>
             </div>
-        <?php endif; ?>
+            <?php endforeach; ?>
+        </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script>
+        // Initialize map centered on Maragondon
+        const map = L.map('map').setView([14.2733, 120.7377], 13);
+        
+        // Add OpenStreetMap tiles
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '© OpenStreetMap contributors'
+        }).addTo(map);
+        
+        // Add marker for Maragondon
+        L.marker([14.2733, 120.7377])
+            .addTo(map)
+            .bindPopup('Maragondon, Cavite')
+            .openPopup();
+    </script>
 </body>
 </html> 

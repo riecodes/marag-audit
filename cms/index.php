@@ -95,39 +95,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CMS Dashboard - Maragondon Audit</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        :root {
-            --dark-gray: #3b3137;
-            --beige: #e0d8c1;
-            --dusty-rose: #7e5c65;
-            --teal-blue: #488a90;
-            --slate-blue: #2c4759;
-        }
-        body {
-            background-color: var(--beige);
-        }
-        .navbar {
-            background-color: var(--slate-blue);
-        }
-        .btn-primary {
-            background-color: var(--teal-blue);
-            border-color: var(--teal-blue);
-        }
-        .btn-primary:hover {
-            background-color: var(--dusty-rose);
-            border-color: var(--dusty-rose);
-        }
-    </style>
+    <link rel="stylesheet" href="../assets/css/styles.css">
 </head>
 <body>
     <!-- Navigation -->
-    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
+    <nav class="navbar navbar-expand-lg navbar-main mb-4">
         <div class="container">
             <a class="navbar-brand" href="index.php">CMS Dashboard</a>
             <div class="navbar-nav ms-auto">
-                <a class="nav-link" href="../index.php">View Site</a>
-                <a class="nav-link" href="logout.php">Logout</a>
             </div>
         </div>
     </nav>
@@ -197,7 +172,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Submit Audit</button>
+                    <button type="submit" class="btn btn-main">Submit Audit</button>
                 </form>
             </div>
         </div>
