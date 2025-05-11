@@ -1,0 +1,110 @@
+/* Explore About Section Styles */
+.explore {
+    display: flex;
+    flex: 1;
+    align-items: center;
+}
+
+.explore-content {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    padding: 0;
+}
+
+.explore-map{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.explore-map img{
+    width: 1000px;
+    object-fit: contain;
+}
+
+.explore-about-card {
+    flex: 1;
+    background: rgba(255,255,255,0.95);
+    margin-left: -2rem;
+    border-radius: 0 1.25rem 1.25rem 0;
+    box-shadow: 0 8px 32px rgba(44,71,89,0.12);
+    padding: 2rem 2rem 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    min-height: 500px;
+    position: relative;
+}
+
+.explore-about-title {
+    background: var(--teal-blue);
+    color: #fff;
+    font-size: 2rem;
+    font-family: var(--heading-font);
+    font-weight: 700;
+    border-radius: 0.3rem;
+    padding: 0.7rem 2rem;
+    margin-bottom: 1.2rem;
+    align-self: stretch;
+    text-align: center;
+}
+
+.explore-about-text {
+    font-size: 1.25rem;
+    color: var(--slate-blue);
+    font-family: var(--main-font);
+    line-height: 1.6;
+}
+
+@media (max-width: 900px) {
+    .explore-content {
+        flex-direction: column;
+        padding: 0;
+    }
+    .explore-map {
+        min-height: 30vh;
+        border-radius: 1.25rem 1.25rem 0 0;
+    }
+    .explore-about-card {
+        margin-left: 0;
+        border-radius: 0 0 1.25rem 1.25rem;
+        padding: 1.2rem;
+        min-height: 300px;
+    }
+    .explore-about-title {
+        font-size: 1.3rem;
+        padding: 0.5rem 1rem;
+    }
+    .explore-about-text {
+        font-size: 1rem;
+    }
+    .explore-btn {
+        left: 1.2rem;
+        right: 1.2rem;
+        bottom: 1.2rem;
+    }
+}
+
+.explore-btn {
+    padding: 15px;
+    display: flex;    
+    align-self: stretch;
+    justify-content: center;
+    gap: 0.5rem;
+    background: var(--teal-blue);
+    border-radius: 0.5rem;
+    transition: background 0.3s;
+    text-decoration: none;
+    font-family: var(--accent-font);
+    position: absolute;
+    left: 2rem;
+    right: 2rem;
+    bottom: 2rem;
+}
+
+.explore-btn:hover {
+    background: var(--dusty-rose);
+    color: #fff;
+    text-decoration: none;
+} 

@@ -45,7 +45,7 @@
     font-family: var(--accent-font);
 }
 
-.explore-btn {
+.hero-content .explore-btn {
     font-size: 1.25rem;
     padding: 0.75rem 2.5rem 0.75rem 1.5rem;
     display: inline-flex;
@@ -62,7 +62,7 @@
     font-family: var(--accent-font);
 }
 
-.explore-btn:hover {
+.hero-content .explore-btn:hover {
     background: var(--dusty-rose);
     color: #fff;
     text-decoration: none;

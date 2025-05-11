@@ -1,10 +1,18 @@
 <?php
-require_once '../config.php';
+require_once '../include/config.php';
 
-// Check if user is logged in
-if (!isset($_SESSION['cms_logged_in'])) {
-    header('Location: login.php');
-    exit;
+// Fetch unique barangays for the dropdown
+try {
+    $pdo = new PDO(
+        "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME,
+        DB_USER,
+        DB_PASS
+    );
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+    $stmt = $pdo->query("SELECT DISTINCT barangay FROM buildings ORDER BY barangay");
+    $barangays = $stmt->fetchAll(PDO::FETCH_COLUMN);
+} catch (PDOException $e) {
+    $barangays = [];
 }
 
 // Handle form submission
@@ -20,11 +28,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         // Start transaction
         $pdo->beginTransaction();
         
+        // Use new barangay if provided, else use selected
+        $barangay = !empty($_POST['new_barangay']) ? $_POST['new_barangay'] : $_POST['barangay'];
+        
         // Insert building
         $stmt = $pdo->prepare("INSERT INTO buildings (name, barangay, description) VALUES (?, ?, ?)");
         $stmt->execute([
             $_POST['building_name'],
-            $_POST['barangay'],
+            $barangay,
             $_POST['description'] ?? ''
         ]);
         
@@ -129,7 +140,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                         <div class="mb-3">
                             <label for="barangay" class="form-label">Barangay</label>
-                            <input type="text" class="form-control" id="barangay" name="barangay" required>
+                            <select class="form-control" id="barangay" name="barangay">
+                                <option value="">-- Select Barangay --</option>
+                                <?php foreach ($barangays as $b): ?>
+                                    <option value="<?php echo htmlspecialchars($b); ?>"><?php echo htmlspecialchars($b); ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <small class="text-muted">Or add new:</small>
+                            <input type="text" class="form-control mt-1" id="new_barangay" name="new_barangay" placeholder="New Barangay (optional)">
                         </div>
                         <div class="mb-3">
                             <label for="description" class="form-label">Description</label>

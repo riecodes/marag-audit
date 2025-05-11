@@ -1,5 +1,5 @@
 /* Explore Section Custom Styles */
-.explore-section {
+.explore {
     display: flex;
     flex: 1;
     background: url('../assets/maps/marag map outline.png') center/cover no-repeat;
@@ -8,7 +8,7 @@
     min-height: 100vh;
 }
 
-.explore-section::before {
+.explore::before {
     content: '';
     position: absolute;
     top: 0;
@@ -29,21 +29,22 @@
     flex-direction: column;
     justify-content: flex-start;
     align-items: flex-start;
-    padding: 3rem 0 0 3rem;
+    padding: 2rem 0 0 3rem;
 }
 
 .explore-title {
     font-size: 3.5rem;
-    font-weight: 800;
-    color: #f3f6f9;
-    margin-bottom: 2rem;
+    font-weight: 1000;    
+    -webkit-text-stroke: 1px white;
+    color: var(--slate-blue);
     line-height: 1.1;
     letter-spacing: 1px;
-    font-family: var(--heading-font);
+    font-family: var(--accent-font);
     text-shadow: 2px 2px 8px rgba(44,71,89,0.25);
+
 }
 
-.explore-btn {
+.explore .explore-btn {
     position: absolute;
     right: 3rem;
     bottom: 3rem;
@@ -56,14 +57,14 @@
     box-shadow: 0 2px 8px rgba(44,71,89,0.08);
     transition: background 0.3s;
     border: none;
-    text-decoration: underline;
     font-family: var(--accent-font);
+    text-decoration: none;
 }
 
-.explore-btn:hover {
+.explore .explore-btn:hover {
     background: var(--dusty-rose);
     color: #fff;
-    text-decoration: underline;
+    
 }
 
 @media (max-width: 900px) {

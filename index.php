@@ -26,6 +26,10 @@ $section = $_GET['section'] ?? 'home';
         include 'content/building.php';
     } elseif ($section === 'explore') {
         include 'content/explore.php';
+    } elseif ($section === 'explore-about') {
+        include 'content/explore-about.php';
+    } elseif ($section === 'barangay') {
+        include 'content/barangay.php';
     }
     ?>
 </div>

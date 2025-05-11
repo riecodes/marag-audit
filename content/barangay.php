@@ -1,11 +1,6 @@
 <?php
 
-$barangay = $_GET['name'] ?? '';
-if (empty($barangay)) {
-    header('Location: explore.php');
-    exit;
-}
-
+// Fetch unique barangays from the database
 try {
     $pdo = new PDO(
         "mysql:host=" . DB_HOST . ";dbname=" . DB_NAME,
@@ -13,45 +8,21 @@ try {
         DB_PASS
     );
     $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-    
-    // Get buildings in this barangay
-    $stmt = $pdo->prepare("SELECT * FROM buildings WHERE barangay = ? ORDER BY name");
-    $stmt->execute([$barangay]);
-    $buildings = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-} catch(PDOException $e) {
-    $error = "Error: " . $e->getMessage();
+    $stmt = $pdo->query("SELECT DISTINCT barangay FROM buildings ORDER BY barangay");
+    $barangays = $stmt->fetchAll(PDO::FETCH_COLUMN);
+} catch (PDOException $e) {
+    $barangays = [];
 }
 ?>
-<div class="container">
-    <nav aria-label="breadcrumb" class="mb-4">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.php?section=explore">Explore</a></li>
-            <li class="breadcrumb-item active"><?php echo htmlspecialchars($barangay); ?></li>
-        </ol>
-    </nav>
-
-    <h1 class="text-center mb-4">Buildings in <?php echo htmlspecialchars($barangay); ?></h1>
-    
-    <?php if (isset($error)): ?>
-        <div class="alert alert-danger"><?php echo htmlspecialchars($error); ?></div>
-    <?php endif; ?>
-
-    <?php if (empty($buildings)): ?>
-        <div class="alert alert-info">No buildings found in this barangay.</div>
-    <?php else: ?>
-        <div class="row row-cols-1 row-cols-md-3 g-4">
-            <?php foreach ($buildings as $building): ?>
-            <div class="col">
-                <div class="card h-100 card-hover">
-                    <div class="card-body">
-                        <h5 class="card-title"><?php echo htmlspecialchars($building['name']); ?></h5>
-                        <p class="card-text"><?php echo htmlspecialchars($building['description'] ?? ''); ?></p>
-                        <a href="index.php?section=building&id=<?php echo $building['id']; ?>" class="btn btn-main">View Details</a>
-                    </div>
-                </div>
-            </div>
+<section class="barangay-section">
+    <div class="barangay-content">
+        <div class="explore-map">
+            <img src="../assets/maps/marag map outline.png" alt="Maragondon Map">
+        </div>
+        <div class="barangay-list">
+            <?php foreach ($barangays as $barangay): ?>
+                <a href="#" class="barangay-btn"><?php echo htmlspecialchars($barangay); ?></a>
             <?php endforeach; ?>
         </div>
-    <?php endif; ?>
-</div> 
+    </div>
+</section>

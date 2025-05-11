@@ -10,4 +10,6 @@
         echo ' active'; ?>" href="index.php?section=about">About</a>
     <a class="nav-link<?php if ($section === 'contact')
         echo ' active'; ?>" href="index.php?section=contact">Contact</a>
+    <a class="nav-link<?php if ($section === 'explore')
+        echo ' active'; ?>" href="index.php?section=explore">Explore</a>
 </div>
