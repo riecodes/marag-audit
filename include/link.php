@@ -27,5 +27,10 @@ if ($section === 'home') {
     echo '<link rel="stylesheet" href="../css/barangay.css">';
 } elseif ($section === 'buildings') {
     echo '<link rel="stylesheet" href="../css/barangay.css">';
+} elseif ($section === 'building_info') {
+    echo '<link rel="stylesheet" href="../css/building_info.css">';
+    echo '<link rel="stylesheet" href="../css/barangay.css">';
+} elseif ($section === 'building_audit') {
+    echo '<link rel="stylesheet" href="../css/building_audit.css">';
 }
 ?>
