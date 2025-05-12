@@ -38,7 +38,7 @@ $section = $_GET['section'] ?? 'home';
     ?>
 </div>
 
-<footer class="footer bg-dark text-light py-3 mt-auto">
+<footer class="footer bg-dark text-light py-3 mt-auto fade-in">
     <div class="container text-center">
         <p class="mb-0">&copy; <?php echo date('Y'); ?> Maragondon Building Audit. All rights reserved.</p>
     </div>

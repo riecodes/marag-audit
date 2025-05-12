@@ -10,6 +10,7 @@
 <!-- Global Custom CSS -->
 <link rel="stylesheet" href="../css/styles.css">
 <link rel="stylesheet" href="../css/nav.css">
+<link rel="stylesheet" href="../css/animations.css">
 <link rel="stylesheet" href="../css/index.css">
 <?php
 if (!isset($section)) $section = $_GET['section'] ?? 'home';

@@ -110,6 +110,7 @@
 .navbar .nav-link:hover {
     color: var(--teal-blue) !important;
     transform: translateY(-2px) scale(1.07);
+    border-radius: 50px;
 }
 
 .navbar .nav-link::after {
@@ -176,7 +177,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+    transition: all 1s;
 }
 .back-btn .material-icons {
     font-size: 2rem;
@@ -185,6 +186,5 @@
 }
 .back-btn:hover {
     background: var(--teal-blue, #a97b8a);
-    color: #fff;
-    box-shadow: 0 4px 16px rgba(44, 71, 89, 0.18);
+    transition: all 0.5s;
 }

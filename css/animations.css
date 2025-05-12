@@ -1,0 +1,256 @@
+/* Animations.css - Reusable animation classes for Maragondon Building Audit */
+
+/* ===== ENTRANCE ANIMATIONS ===== */
+/* Fade in animation */
+.fade-in {
+    animation: fadeIn 0.5s ease forwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+/* Fade in up animation */
+.fade-in-up {
+    animation: fadeInUp 0.6s ease forwards;
+}
+
+@keyframes fadeInUp {
+    from { 
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Fade in left animation */
+.fade-in-left {
+    animation: fadeInLeft 0.6s ease forwards;
+}
+
+@keyframes fadeInLeft {
+    from { 
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Fade in right animation */
+.fade-in-right {
+    animation: fadeInRight 0.6s ease forwards;
+}
+
+@keyframes fadeInRight {
+    from { 
+        opacity: 0;
+        transform: translateX(30px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* Scale in animation */
+.scale-in {
+    animation: scaleIn 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+@keyframes scaleIn {
+    from { 
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    to { 
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+/* Staggered entrance for child elements */
+.stagger-children > * {
+    opacity: 0;
+}
+
+.stagger-children > *:nth-child(1) { animation: fadeInUp 0.5s ease forwards 0.1s; }
+.stagger-children > *:nth-child(2) { animation: fadeInUp 0.5s ease forwards 0.2s; }
+.stagger-children > *:nth-child(3) { animation: fadeInUp 0.5s ease forwards 0.3s; }
+.stagger-children > *:nth-child(4) { animation: fadeInUp 0.5s ease forwards 0.4s; }
+.stagger-children > *:nth-child(5) { animation: fadeInUp 0.5s ease forwards 0.5s; }
+.stagger-children > *:nth-child(6) { animation: fadeInUp 0.5s ease forwards 0.6s; }
+.stagger-children > *:nth-child(7) { animation: fadeInUp 0.5s ease forwards 0.7s; }
+.stagger-children > *:nth-child(8) { animation: fadeInUp 0.5s ease forwards 0.8s; }
+.stagger-children > *:nth-child(9) { animation: fadeInUp 0.5s ease forwards 0.9s; }
+.stagger-children > *:nth-child(10) { animation: fadeInUp 0.5s ease forwards 1s; }
+
+/* ===== ATTENTION ANIMATIONS ===== */
+/* Pulse animation */
+.pulse {
+    animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+}
+
+/* Bounce animation */
+.bounce {
+    animation: bounce 1s ease infinite;
+}
+
+@keyframes bounce {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+/* Shake animation */
+.shake {
+    animation: shake 0.82s cubic-bezier(.36,.07,.19,.97) both;
+}
+
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* ===== HOVER ANIMATIONS ===== */
+/* Hover lift effect */
+.hover-lift {
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Hover glow effect */
+.hover-glow {
+    transition: box-shadow 0.3s ease;
+}
+
+.hover-glow:hover {
+    box-shadow: 0 0 15px var(--teal-blue, #488a90);
+}
+
+/* ===== BUTTONS & INTERACTIVE ELEMENTS ===== */
+/* Button press effect */
+.btn-press {
+    transition: transform 0.2s ease;
+}
+
+.btn-press:active {
+    transform: scale(0.95);
+}
+
+/* Ripple effect for buttons/cards */
+.ripple {
+    position: relative;
+    overflow: hidden;
+}
+
+.ripple::after {
+    content: '';
+    display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    background-image: radial-gradient(circle, #fff 10%, transparent 10.01%);
+    background-repeat: no-repeat;
+    background-position: 50%;
+    transform: scale(10, 10);
+    opacity: 0;
+    transition: transform 0.5s, opacity 1s;
+}
+
+.ripple:active::after {
+    transform: scale(0, 0);
+    opacity: 0.3;
+    transition: 0s;
+}
+
+/* ===== PAGE TRANSITIONS ===== */
+/* Page transition out */
+.page-transition-out {
+    animation: fadeOut 0.3s ease forwards;
+}
+
+@keyframes fadeOut {
+    from { opacity: 1; }
+    to { opacity: 0; }
+}
+
+/* ===== LOADING STATES ===== */
+/* Spinner animation */
+.loading-spinner {
+    width: 40px;
+    height: 40px;
+    border: 3px solid rgba(255,255,255,0.3);
+    border-radius: 50%;
+    border-top-color: var(--teal-blue, #488a90);
+    animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Skeleton loading */
+.skeleton-pulse {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: skeletonPulse 1.5s ease-in-out infinite;
+}
+
+@keyframes skeletonPulse {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}
+
+/* ===== PROGRESS ANIMATIONS ===== */
+/* Progress bar animation */
+.progress-bar {
+    height: 4px;
+    background-color: var(--teal-blue, #488a90);
+    width: 0%;
+    transition: width 0.5s ease;
+}
+
+/* Count up animation */
+.count-up {
+    animation: countUp 2s ease-out forwards;
+}
+
+@keyframes countUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* ===== UTILITY ANIMATIONS ===== */
+/* Animation delays */
+.delay-100 { animation-delay: 0.1s; }
+.delay-200 { animation-delay: 0.2s; }
+.delay-300 { animation-delay: 0.3s; }
+.delay-400 { animation-delay: 0.4s; }
+.delay-500 { animation-delay: 0.5s; }
+
+/* Animation speeds */
+.duration-300 { animation-duration: 0.3s; }
+.duration-500 { animation-duration: 0.5s; }
+.duration-700 { animation-duration: 0.7s; }
+.duration-1000 { animation-duration: 1s; } 
