@@ -1,8 +1,8 @@
 /* Home Section Custom Styles */
 .hero-section {
     display: flex;
-    flex: 1;
-    background: url('../assets/photo-docs/bg/home-bg.png') center/cover no-repeat;    
+    flex: 1;    
+    background: url('../assets/photo-docs/!main-pictures-buildings/0-MAIN-PHOTO.jpg') center/cover no-repeat;    
     align-items: center;
     position: relative;
 }

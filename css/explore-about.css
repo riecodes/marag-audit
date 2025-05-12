@@ -1,110 +1,138 @@
-/* Explore About Section Styles */
-.explore {
+/* About Section Styles (Consistent with Barangay) */
+.barangay-section {
     display: flex;
     flex: 1;
     align-items: center;
+    justify-content: center;
+    background: none;
+    padding: 1rem;
 }
 
-.explore-content {
+.barangay-content {
     display: flex;
     flex-direction: row;
-    height: 100%;
-    padding: 0;
+    width: 100%;
+    max-width: 1200px;
+    align-items: center;
+    gap: 2rem;
+    justify-content: center;
 }
 
-.explore-map{
+.explore-map {
+    width: 100%;
+    max-width: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
-}
-.explore-map img{
-    width: 1000px;
-    object-fit: contain;
-}
-
-.explore-about-card {
-    flex: 1;
-    background: rgba(255,255,255,0.95);
-    margin-left: -2rem;
-    border-radius: 0 1.25rem 1.25rem 0;
-    box-shadow: 0 8px 32px rgba(44,71,89,0.12);
-    padding: 2rem 2rem 2rem 3rem;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    min-height: 500px;
     position: relative;
 }
 
-.explore-about-title {
-    background: var(--teal-blue);
-    color: #fff;
-    font-size: 2rem;
-    font-family: var(--heading-font);
-    font-weight: 700;
-    border-radius: 0.3rem;
-    padding: 0.7rem 2rem;
-    margin-bottom: 1.2rem;
-    align-self: stretch;
-    text-align: center;
+.explore-map img {
+    width: 100%;
+    max-width: 500px;
+    height: auto;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
 }
 
-.explore-about-text {
-    font-size: 1.25rem;
-    color: var(--slate-blue);
-    font-family: var(--main-font);
-    line-height: 1.6;
+.about-card {
+    flex: 1;
+    padding: 2rem;
+    text-align: center;
+    color: white;
+    max-width: 600px;
+    z-index: 2;
+    background-color: rgba(44, 71, 89, 0.85);
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1.2rem;
+}
+
+.about-card h2 {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+    font-family: var(--accent-font);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.about-card p {
+    margin-bottom: 1.5rem;
+    font-size: 1.2rem;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+.about-card .barangay-btn {
+    display: inline-block;
+    margin: 0 auto;
+    padding: 0.8rem 2rem;
+    width: auto;
+    font-size: 1.1rem;
+    background-color: var(--teal-blue);
+    border: 2px solid white;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    color: white;
+    border-radius: 50px;
+    font-family: var(--accent-font);
+    font-weight: 600;
+    transition: all 0.3s;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.about-card .barangay-btn:hover {
+    background-color: var(--dusty-rose);
+    transform: translateY(-3px);
+}
+
+.about-card .material-icons {
+    vertical-align: middle;
+    margin-left: 0.5rem;
+    font-size: 1.3em;
+    transition: transform 0.3s;
+}
+
+.about-card .barangay-btn:hover .material-icons {
+    transform: translateX(5px);
 }
 
 @media (max-width: 900px) {
-    .explore-content {
+    .barangay-content {
         flex-direction: column;
-        padding: 0;
+        gap: 1.5rem;
     }
     .explore-map {
-        min-height: 30vh;
-        border-radius: 1.25rem 1.25rem 0 0;
+        max-width: 100%;
     }
-    .explore-about-card {
-        margin-left: 0;
-        border-radius: 0 0 1.25rem 1.25rem;
-        padding: 1.2rem;
-        min-height: 300px;
+    .about-card {
+        max-width: 100%;
+        padding: 1.5rem 1rem;
     }
-    .explore-about-title {
-        font-size: 1.3rem;
-        padding: 0.5rem 1rem;
+    .about-card h2 {
+        font-size: 2rem;
     }
-    .explore-about-text {
+    .about-card p {
         font-size: 1rem;
     }
-    .explore-btn {
-        left: 1.2rem;
-        right: 1.2rem;
-        bottom: 1.2rem;
+}
+
+@media (max-width: 600px) {
+    .about-card {
+        padding: 1rem 0.5rem;
     }
-}
-
-.explore-btn {
-    padding: 15px;
-    display: flex;    
-    align-self: stretch;
-    justify-content: center;
-    gap: 0.5rem;
-    background: var(--teal-blue);
-    border-radius: 0.5rem;
-    transition: background 0.3s;
-    text-decoration: none;
-    font-family: var(--accent-font);
-    position: absolute;
-    left: 2rem;
-    right: 2rem;
-    bottom: 2rem;
-}
-
-.explore-btn:hover {
-    background: var(--dusty-rose);
-    color: #fff;
-    text-decoration: none;
+    .about-card h2 {
+        font-size: 1.3rem;
+    }
+    .about-card p {
+        font-size: 0.95rem;
+    }
+    .about-card .barangay-btn {
+        padding: 0.6rem 1.2rem;
+        font-size: 0.9rem;
+    }
 } 
