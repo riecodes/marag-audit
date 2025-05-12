@@ -61,30 +61,24 @@ try {
         FOREIGN KEY (audit_type_id) REFERENCES audit_types(id) ON DELETE CASCADE
     )");
     
+    // Create building_media table (combined documents and photos)
+    $pdo->exec("CREATE TABLE IF NOT EXISTS building_media (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        building_id INT NOT NULL,
+        file_path VARCHAR(255) NOT NULL,
+        media_type ENUM('photo', 'document') NOT NULL,
+        category ENUM('main_photo', 'documentation', 'other') NOT NULL,
+        description TEXT,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (building_id) REFERENCES buildings(id) ON DELETE CASCADE
+    )");
+    
     // Insert default audit types
     $pdo->exec("INSERT IGNORE INTO audit_types (name, description) VALUES 
         ('infrastructure', 'Infrastructure Audit Checklist'),
         ('fire_safety', 'Fire Safety Audit Checklist'),
         ('accessibility', 'Accessibility Audit Checklist')
     ");
-    
-    // Create photos table
-    $pdo->exec("CREATE TABLE IF NOT EXISTS photos (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        building_id INT NOT NULL,
-        filename VARCHAR(255) NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (building_id) REFERENCES buildings(id) ON DELETE CASCADE
-    )");
-    
-    // Create documents table
-    $pdo->exec("CREATE TABLE IF NOT EXISTS documents (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        building_id INT NOT NULL,
-        filename VARCHAR(255) NOT NULL,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        FOREIGN KEY (building_id) REFERENCES buildings(id) ON DELETE CASCADE
-    )");
     
     // Create uploads directory if it doesn't exist
     if (!file_exists(UPLOAD_PATH)) {
