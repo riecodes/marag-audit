@@ -22,12 +22,14 @@ $section = $_GET['section'] ?? 'home';
         include 'content/contact.php';
     } elseif ($section === 'barangay') {
         include 'content/barangay.php';
-    } elseif ($section === 'building') {
-        include 'content/building.php';
     } elseif ($section === 'explore') {
         include 'content/explore.php';
     } elseif ($section === 'explore-about') {
         include 'content/explore-about.php';
+    } elseif ($section === 'buildings') {
+        include 'content/building.php';
+    } elseif ($section === 'building_info') {
+        include 'content/building_info.php';
     }
     ?>
 </div>

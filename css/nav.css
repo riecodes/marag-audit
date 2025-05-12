@@ -86,6 +86,10 @@
     animation-delay: 0.4s;
 }
 
+.navbar .nav-link:nth-child(5) {
+    animation-delay: 0.5s;
+}
+
 .navbar .nav-link.active,
 .navbar .nav-link:hover {
     color: var(--teal-blue) !important;

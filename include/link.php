@@ -25,5 +25,7 @@ if ($section === 'home') {
     echo '<link rel="stylesheet" href="../css/explore-about.css">';
 } elseif ($section === 'barangay') {
     echo '<link rel="stylesheet" href="../css/barangay.css">';
+} elseif ($section === 'buildings') {
+    echo '<link rel="stylesheet" href="../css/barangay.css">';
 }
 ?>
