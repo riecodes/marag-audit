@@ -12,13 +12,28 @@ try {
     $pdo->exec("CREATE DATABASE IF NOT EXISTS " . DB_NAME);
     $pdo->exec("USE " . DB_NAME);
     
-    // Create buildings table
+    // Create barangays table
+    $pdo->exec("CREATE TABLE IF NOT EXISTS barangays (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        name VARCHAR(100) NOT NULL UNIQUE,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )");
+    
+    // Create buildings table with new fields
     $pdo->exec("CREATE TABLE IF NOT EXISTS buildings (
         id INT AUTO_INCREMENT PRIMARY KEY,
         name VARCHAR(255) NOT NULL,
-        barangay VARCHAR(100) NOT NULL,
-        description TEXT,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+        barangay_id INT NOT NULL,
+        location VARCHAR(255) NOT NULL,
+        height DECIMAL(10,2) NOT NULL,
+        storey_count INT NOT NULL,
+        building_type VARCHAR(100) NOT NULL,
+        construction_year INT NOT NULL,
+        structure_type VARCHAR(100) NOT NULL,
+        design_occupancy VARCHAR(100) NOT NULL,
+        nscp_edition_year INT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+        FOREIGN KEY (barangay_id) REFERENCES barangays(id) ON DELETE CASCADE
     )");
     
     // Create audits table
@@ -53,8 +68,6 @@ try {
     if (!file_exists(UPLOAD_PATH)) {
         mkdir(UPLOAD_PATH, 0777, true);
     }
-    
-    
     
 } catch(PDOException $e) {
     die("Error: " . $e->getMessage());    
