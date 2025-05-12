@@ -84,3 +84,94 @@ body {
 .bg-accent {
     background: var(--dusty-rose) !important;
 }
+
+/* Search box in navbar */
+.search-container {
+    position: relative;
+    width: 300px;
+    margin: 0 20px;
+}
+
+.search-input-wrapper {
+    position: relative;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 20px;
+    border: 1px solid var(--beige);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.search-input-wrapper:focus-within {
+    box-shadow: 0 0 0 2px var(--teal-blue);
+    background: white;
+}
+
+.search-icon {
+    position: absolute;
+    left: 12px;
+    color: var(--dusty-rose);
+    font-size: 20px;
+    z-index: 2;
+}
+
+.search-input {
+    width: 100%;
+    padding: 8px 12px 8px 40px;
+    border: none;
+    background: transparent;
+    font-size: 14px;
+    font-family: var(--accent-font);
+    color: var(--dark-gray);
+}
+
+.search-input:focus {
+    outline: none;
+}
+
+.search-input::placeholder {
+    color: #aaa;
+    opacity: 0.8;
+    font-style: italic;
+}
+
+@media (max-width: 768px) {
+    .search-container {
+        width: 100%;
+        max-width: 250px;
+        margin: 8px 0;
+    }
+    
+    .search-input {
+        font-size: 13px;
+        padding: 7px 10px 7px 35px;
+    }
+    
+    .search-icon {
+        font-size: 18px;
+        left: 10px;
+    }
+}
+
+/* Add footer styles to fix the appearance */
+.footer {
+    background-color: var(--dark-gray) !important;
+    color: var(--beige) !important;
+    padding: 1rem 0;
+    margin-top: 2rem;
+    width: 100%;
+}
+
+.footer .container {
+    background-color: transparent !important;
+    box-shadow: none !important;
+}
+
+.footer p {
+    margin: 0;
+    color: var(--beige) !important;
+    font-family: var(--accent-font);
+}

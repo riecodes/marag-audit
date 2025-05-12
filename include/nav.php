@@ -5,8 +5,13 @@
         </button>
     </div>
     <div class="search-container">
-        <span class="material-icons search-icon">search</span>
-        <input class="search-input" type="search" name="q" placeholder=" ">
+        <form id="searchForm" action="index.php" method="get">
+            <div class="search-input-wrapper">
+                <input type="hidden" name="section" value="search">
+                <span class="material-icons search-icon">search</span>
+                <input class="search-input" type="search" name="q" placeholder="Search barangays or buildings..." autocomplete="off">
+            </div>
+        </form>
     </div>
     <div class="nav-links">
         <a class="nav-link<?php if ($section === 'home') echo ' active'; ?>" href="index.php?section=home">Home</a>
@@ -16,3 +21,21 @@
         <a class="nav-link<?php if ($section === 'barangays') echo ' active'; ?>" href="index.php?section=barangay">Barangays</a>
     </div>
 </nav>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    // Handle search form submission
+    const searchForm = document.getElementById('searchForm');
+    const searchInput = searchForm.querySelector('input[name="q"]');
+    
+    // Submit form when Enter key is pressed in search input
+    searchInput.addEventListener('keypress', function(e) {
+        if (e.key === 'Enter') {
+            if (searchInput.value.trim() !== '') {
+                searchForm.submit();
+            }
+            e.preventDefault();
+        }
+    });
+});
+</script>

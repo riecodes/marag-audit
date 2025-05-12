@@ -15,6 +15,7 @@ $audit_types = [
 
 // Initialize arrays with default values
 $audit_pdfs = array_fill_keys(array_keys($audit_types), null);
+$audit_summaries = array_fill_keys(array_keys($audit_types), null);
 $doc_images = [];
 $building = null;
 
@@ -38,6 +39,18 @@ try {
         $pdf = $stmt->fetchColumn();
         if ($pdf) {
             $audit_pdfs[$key] = '../' . $pdf;
+        }
+        
+        // Fetch summary for this audit type from building_checklist_description
+        $summaryStmt = $pdo->prepare("
+            SELECT summary FROM building_checklist_description 
+            WHERE building_id = ? AND audit_type_id = ? 
+            LIMIT 1
+        ");
+        $summaryStmt->execute([$building_id, $type_id]);
+        $summary = $summaryStmt->fetchColumn();
+        if ($summary) {
+            $audit_summaries[$key] = $summary;
         }
     }
 
@@ -64,7 +77,13 @@ function safe($val) {
         <div class="audit-panels">
             <div class="audit-panel" data-tab="infrastructure">
                 <h2>Infrastructure Audit</h2>
-                <div class="audit-summary">Lorem ipsum dolor sit amet, summary results for infrastructure audit.</div>
+                <div class="audit-summary">
+                    <?php if (isset($audit_summaries['infrastructure']) && $audit_summaries['infrastructure']): ?>
+                        <?php echo nl2br(htmlspecialchars($audit_summaries['infrastructure'])); ?>
+                    <?php else: ?>
+                        <p>No infrastructure audit summary available for this building.</p>
+                    <?php endif; ?>
+                </div>
                 <?php if ($audit_pdfs['infrastructure']): ?>
                     <div class="audit-pdf"><embed src="<?php echo htmlspecialchars($audit_pdfs['infrastructure']); ?>" type="application/pdf" width="100%" height="800px" page="1"></div>
                 <?php else: ?>
@@ -73,7 +92,13 @@ function safe($val) {
             </div>
             <div class="audit-panel" data-tab="fire_safety" style="display:none;">
                 <h2>Fire Safety Audit</h2>
-                <div class="audit-summary">Lorem ipsum dolor sit amet, summary results for fire safety audit.</div>
+                <div class="audit-summary">
+                    <?php if (isset($audit_summaries['fire_safety']) && $audit_summaries['fire_safety']): ?>
+                        <?php echo nl2br(htmlspecialchars($audit_summaries['fire_safety'])); ?>
+                    <?php else: ?>
+                        <p>No fire safety audit summary available for this building.</p>
+                    <?php endif; ?>
+                </div>
                 <?php if ($audit_pdfs['fire_safety']): ?>
                     <div class="audit-pdf"><embed src="<?php echo htmlspecialchars($audit_pdfs['fire_safety']); ?>" type="application/pdf" width="100%" height="800px" page="1"></div>
                 <?php else: ?>
@@ -82,7 +107,13 @@ function safe($val) {
             </div>
             <div class="audit-panel" data-tab="accessibility" style="display:none;">
                 <h2>Accessibility Audit</h2>
-                <div class="audit-summary">Lorem ipsum dolor sit amet, summary results for accessibility audit.</div>
+                <div class="audit-summary">
+                    <?php if (isset($audit_summaries['accessibility']) && $audit_summaries['accessibility']): ?>
+                        <?php echo nl2br(htmlspecialchars($audit_summaries['accessibility'])); ?>
+                    <?php else: ?>
+                        <p>No accessibility audit summary available for this building.</p>
+                    <?php endif; ?>
+                </div>
                 <?php if ($audit_pdfs['accessibility']): ?>
                     <div class="audit-pdf"><embed src="<?php echo htmlspecialchars($audit_pdfs['accessibility']); ?>" type="application/pdf" width="100%" height="800px" page="1"></div>
                 <?php else: ?>
@@ -104,6 +135,14 @@ function safe($val) {
         </div>
     </div>
 </section>
+
+<!-- Lightbox for enlarged images -->
+<div id="image-lightbox" class="lightbox">
+    <div class="lightbox-content">
+        <img id="lightbox-img" src="" alt="Enlarged Image">
+    </div>
+</div>
+
 <link rel="stylesheet" href="../css/building_audit.css">
 <script>
 document.addEventListener('DOMContentLoaded', function() {
@@ -122,6 +161,28 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
             });
         });
+    });
+
+    // Lightbox functionality for documentation images
+    const lightbox = document.getElementById('image-lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const docImages = document.querySelectorAll('.doc-img-wrap img');
+    
+    // Open lightbox when an image is clicked
+    docImages.forEach(img => {
+        img.addEventListener('click', function() {
+            lightboxImg.src = this.src;
+            lightbox.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Prevent scrolling when lightbox is open
+        });
+    });
+    
+    // Close lightbox when clicking anywhere on the lightbox
+    lightbox.addEventListener('click', function(e) {
+        if (e.target !== lightboxImg) {
+            lightbox.style.display = 'none';
+            document.body.style.overflow = ''; // Restore scrolling
+        }
     });
 });
 </script> 

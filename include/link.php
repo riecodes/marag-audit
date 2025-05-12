@@ -32,5 +32,7 @@ if ($section === 'home') {
     echo '<link rel="stylesheet" href="../css/barangay.css">';
 } elseif ($section === 'building_audit') {
     echo '<link rel="stylesheet" href="../css/building_audit.css">';
+} elseif ($section === 'search') {
+    echo '<link rel="stylesheet" href="../css/search.css">';
 }
 ?>

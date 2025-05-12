@@ -85,6 +85,16 @@ try {
         mkdir(UPLOAD_PATH, 0777, true);
     }
     
+    // Create building_checklist_description table
+    $pdo->exec("CREATE TABLE IF NOT EXISTS building_checklist_description (
+        id INT AUTO_INCREMENT PRIMARY KEY,
+        barangay VARCHAR(255) NOT NULL,
+        building_name VARCHAR(255) NOT NULL,
+        audit_type ENUM('infrastructure', 'fire_safety', 'accessibility') NOT NULL,
+        summary TEXT NOT NULL,
+        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    )");
+    
 } catch(PDOException $e) {
     die("Error: " . $e->getMessage());    
 }
