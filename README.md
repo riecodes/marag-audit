@@ -35,7 +35,7 @@ The project follows a modular structure with clear separation of concerns:
 
 1. Clone the repository:
 ```bash
-git clone [repository-url]
+git clone https://github.com/riecodes/marag-audit.git
 ```
 
 2. Set up your web server (XAMPP recommended)
