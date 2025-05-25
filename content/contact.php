@@ -3,7 +3,7 @@
         <h1 class="contact-title">CONTACT</h1>
         <div class="contact-list">
             <div class="contact-item">
-                <img src="assets/img/avatar1.png" alt="Avatar" class="contact-avatar">
+                <img src="../assets/contact/Maechelle Rei M. Asuncion.png" alt="Avatar" class="contact-avatar">
                 <div class="contact-info">
                     <div class="contact-name">ASUNCION, MAECHELLE REI M.</div>
                     <div class="contact-social">
@@ -17,7 +17,7 @@
                 </div>
             </div>
             <div class="contact-item">
-                <img src="assets/img/avatar1.png" alt="Avatar" class="contact-avatar">
+                <img src="../assets/contact/Ella Luisa M. Caparos.png" alt="Avatar" class="contact-avatar">
                 <div class="contact-info">
                     <div class="contact-name">CAPAROS, ELLA LUISA M.</div>
                     <div class="contact-social">
@@ -31,7 +31,7 @@
                 </div>
             </div>
             <div class="contact-item">
-                <img src="assets/img/avatar1.png" alt="Avatar" class="contact-avatar">
+                <img src="../assets/contact/Krisha B. Talactac.jpg" alt="Avatar" class="contact-avatar">
                 <div class="contact-info">
                     <div class="contact-name">TALACTAC, KRISHA B.</div>
                     <div class="contact-social">
